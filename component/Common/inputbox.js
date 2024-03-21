@@ -14,7 +14,7 @@ export default function TextField({type , label, ...props }) {
         {...field}
         {...props}
       />
-      <ErrorMessage name={field.name} component="div" className="form-error" />
+      <ErrorMessage name={field.name} component="div" className="text-danger" />
     </div>
   );
 }

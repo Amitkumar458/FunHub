@@ -3,7 +3,8 @@ import React from 'react'
 
 export default function login() {
     return (
-        <div>
+        <div className='loginpage'>
+            <h1 className='loginHead'>FunHub</h1>
             <LoginForm/>
         </div>
     )
