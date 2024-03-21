@@ -10,7 +10,8 @@ export const endpoints = {
         unfollow:""
     },
     blog:{
-        postBlog:"",
-        suggestBlog:"",
+        postBlog:"api/",
+        suggestBlog:"api/post/suggest",
+        postBlog:"/api/post/postBlog"
     }
 }
