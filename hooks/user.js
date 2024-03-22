@@ -1,6 +1,5 @@
 'use client'
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { redirect } from "next/navigation";
 import { useCookies } from "react-cookie";
 const { endpoints } = require("@/config/endPoints")
 const { fetchJson } = require("@/libs/api")
@@ -44,8 +43,9 @@ export function useUser() {
             queryFn: async () => {
                 const res = await fetchJson('api/user', {
                     'Content-type': 'application/json'
-                })
-                return res;
+                } , true)
+                const data = await res.json();
+                return data;
             }
         })
         return { user: data, isUserLoading: isLoading }

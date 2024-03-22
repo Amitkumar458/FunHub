@@ -1,3 +1,4 @@
+"use client"
 import { AppBar, Toolbar } from "@mui/material";
 import React from "react";
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';

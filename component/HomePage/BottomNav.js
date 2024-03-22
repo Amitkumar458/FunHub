@@ -8,9 +8,9 @@ import { AccountBox, ChatSharp, Home, Search, VideoCall } from '@mui/icons-mater
 import { useRouter } from 'next/navigation'
 
 
-export default function FixedBottomNavigation() {
+export default function FixedBottomNavigation({user}) {
   const [value, setValue] = React.useState(0);
-  const arr = ["home" , "search" , "videocall" , "chats" , "account"];
+  const arr = ["home" , "search" , "videocall" , "chats" , `user/${user?.username}`];
   const ref = React.useRef(null);
   const router = useRouter();
 
