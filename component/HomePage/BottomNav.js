@@ -3,16 +3,16 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ArchiveIcon from '@mui/icons-material/Archive';
 import Paper from '@mui/material/Paper';
 import { AccountBox, ChatSharp, Home, Search, VideoCall } from '@mui/icons-material';
+import { useRouter } from 'next/navigation'
 
 
 export default function FixedBottomNavigation() {
   const [value, setValue] = React.useState(0);
+  const arr = ["home" , "search" , "videocall" , "chats" , "account"];
   const ref = React.useRef(null);
+  const router = useRouter();
 
   return (
     <Box sx={{ pb: 7 }} ref={ref}>
@@ -22,6 +22,7 @@ export default function FixedBottomNavigation() {
           value={value}
           onChange={(event, newValue) => {
             setValue(newValue);
+            router.push(`/${arr[newValue]}`);
           }}
         >
           <BottomNavigationAction label="Home" icon={<Home />} />

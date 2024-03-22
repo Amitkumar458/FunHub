@@ -1,4 +1,6 @@
+'use client'
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { redirect } from "next/navigation";
 import { useCookies } from "react-cookie";
 const { endpoints } = require("@/config/endPoints")
 const { fetchJson } = require("@/libs/api")
@@ -35,17 +37,19 @@ export function LoginUser() {
 }
 
 export function useUser() {
-    const [cookies, setCookie] = useCookies(['token']);
-    const url = `http://localhost:3000/${endpoints.user.me}`
-    const { data, isLoading } = useQuery({
-        queryKey: ['user'],
-        queryFn: async () => {
-            const res = await fetchJson(url, {
-                'Content-type': 'application/json',
-                'token': `Bearer ${cookies}`,
-            })
-            return res;
-        }
-    })
-    return { user: data, isUserLoading: isLoading }
+    const [cookies, setCookie] = useCookies(["token"]);
+    if(cookies.token){
+        const { data, isLoading } = useQuery({
+            queryKey: ['user'],
+            queryFn: async () => {
+                const res = await fetchJson('api/user', {
+                    'Content-type': 'application/json'
+                })
+                return res;
+            }
+        })
+        return { user: data, isUserLoading: isLoading }
+    }else{
+        return { user:null , isUserLoading:false}
+    }
 }

@@ -1,16 +1,18 @@
 "use client"
 import FixedBottomNavigation from "@/component/HomePage/BottomNav";
+import Loder from "@/component/HomePage/Loder";
 import App from "@/component/HomePage/TopNav";
 import { useUser } from "@/hooks/user";
 
 
 export default function Layout({title , children , auth}){
     const {user , isUserLoading} = useUser();
-    console.log(user , isUserLoading);
+   
     return (
-        <>
+        <> {
+            isUserLoading ? <Loder/> : <>
             <header>
-                <App user={auth}/>
+                <App user={user}/>
                 <FixedBottomNavigation/>
             </header>
             <main>
@@ -19,6 +21,8 @@ export default function Layout({title , children , auth}){
             <footer>
                 this is footer
             </footer>
+            </>
+        }
         </>
     )
 }
