@@ -2,7 +2,7 @@ export const endpoints = {
     user:{
         login:"api/user/login",
         signup:"api/user/signup",
-        me:"api/user",
+        me:"api/user/me",
         find:"api/user", // api/user/:name;
         userdetails:"api/user/all", // api/user/all?username=username;
         searchUser:"api/user", // api/user/:name

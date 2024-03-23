@@ -12,3 +12,13 @@
 .loginHead {
   padding: 10px;
 }
+
+
+.searchinput{
+  width: 100%;
+  height: 50px;
+  margin-top: 12px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+

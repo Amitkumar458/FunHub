@@ -1,5 +1,5 @@
 'use client'
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCookies } from "react-cookie";
 const { endpoints } = require("@/config/endPoints")
 const { fetchJson } = require("@/libs/api")
@@ -37,19 +37,75 @@ export function LoginUser() {
 
 export function useUser() {
     const [cookies, setCookie] = useCookies(["token"]);
-    if(cookies.token){
-        const { data, isLoading } = useQuery({
-            queryKey: ['user'],
-            queryFn: async () => {
-                const res = await fetchJson('api/user', {
-                    'Content-type': 'application/json'
-                } , true)
+    const { data, isLoading } = useQuery({
+        queryKey: ['user'],
+        queryFn: async () => {
+            const res = await fetchJson(`http://localhost:3001/api/user`, {
+                'Content-type': 'application/json'
+            }, true)
+            const data = await res.json();
+            return data;
+        },
+        cacheTime: Infinity
+    })
+    return { user: data, isUserLoading: isLoading }
+}
+
+export function UseFind(user) {
+    const {data , isLoading} = useQuery({
+        queryKey:[user],
+        queryFn: async () => {
+            const res = await fetchJson(`http://localhost:3000/${endpoints.user.userdetails}?username=${user}`, {
+                headers: { 'Content-Type': 'application/json' }
+            }, true)
+            const data = await res.json();
+            return data;
+        },
+        cacheTime:Infinity
+    })
+    return {data , isLoading}
+}
+
+export function useFollow(){
+    const client = useQueryClient();
+    const mutation = useMutation({
+        mutationFn:async ({ followingId }) => fetchJson(`/api/follow`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ followingId })
+        }, true)
+    })
+    return {
+        handleFollow: async (followingId , username) => {
+            try {
+                const res = await mutation.mutateAsync({ followingId });
                 const data = await res.json();
+                if(data.success){
+                    client.invalidateQueries({ queryKey: [username] });
+                }
                 return data;
+            } catch (err) {
+                return {
+                    success: false,
+                    error: 'something wents wrong.'
+                }
             }
-        })
-        return { user: data, isUserLoading: isLoading }
-    }else{
-        return { user:null , isUserLoading:false}
+        },
+        isFollowLoading: mutation.isPending,
     }
+}
+
+
+export function useSearch(search) {
+    const {data , isLoading} = useQuery({
+        queryKey:[search],
+        queryFn :async () => {
+            const res = await fetchJson(`http://localhost:3001/api/search?search=${search}` , {
+                headers: { 'Content-Type': 'application/json' }
+            } , true);
+            const response = await res.json();
+            return response;
+        }
+    })
+    return {data , isLoading};
 }

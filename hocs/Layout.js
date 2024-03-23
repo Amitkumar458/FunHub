@@ -1,37 +1,29 @@
 "use client"
 import FixedBottomNavigation from "@/component/HomePage/BottomNav";
-import Loder from "@/component/HomePage/Loder";
+// import Loder from "@/component/HomePage/Loder";
 import App from "@/component/HomePage/TopNav";
 import { useUser } from "@/hooks/user";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
 
 
-export default function Layout({title , children , auth}){
+export default function Layout({title ,search, children , handleSearchData , auth}){
     const {user , isUserLoading} = useUser();
     useEffect(() => {
-        if(isUserLoading){
-            return () => {
-                <Loder/>
-            }
-        }
-        if(!isUserLoading && !user){
+        if(!isUserLoading && !user.success){
             redirect('/login');
         }
-    } , []);
+    } , [user , isUserLoading]);
     
     return (
         <> 
             <header>
-                <App user={user}/>
-                <FixedBottomNavigation user={user}/>
+                <FixedBottomNavigation user={user?.data}/>
             </header>
             <main>
                 {children}
             </main>
-            <footer>
-                this is footer
-            </footer>
+            <App search={search} user={user?.data} handleSearchData={handleSearchData}/>
         </>
     )
 }
