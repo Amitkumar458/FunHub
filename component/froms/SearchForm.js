@@ -14,7 +14,7 @@ export default function SearchForm({handleSearchData}) {
     return (
         <div className="searchinput">
             <>
-            <input value={search} onChange={change} type="text" className="form-control" id="search" aria-describedby="emailHelp" placeholder="Enter Search"/>
+            <input autoComplete="off" value={search} onChange={change} type="text" className="form-control" id="search" aria-describedby="emailHelp" placeholder="Enter Search"/>
             </>
         </div>
     );

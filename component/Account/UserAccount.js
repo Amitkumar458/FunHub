@@ -1,18 +1,20 @@
 "use client"
 import React from 'react';
-import { Avatar, Box, CircularProgress, Divider, Stack } from '@mui/material';
+import { Alert, Avatar, Box, Stack, Typography } from '@mui/material';
 import { useFollow, useUser } from '@/hooks/user';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 const UserProfile = ({ data }) => {
     const { user, isUserLoading } = useUser();
-    const enable = data.data.followers.map((val) => { return user?.data.id === val.followerId })[0];
-    const self = data?.data.username === user?.data.username;
+    const enable = data?.data?.followers.map((val) => { return user?.data.id === val.followerId })[0];
+    const self = data?.data?.username === user?.data?.username;
     const { handleFollow, isFollowLoading } = useFollow();
     const followhandler = async () => {
         const res = await handleFollow(data.data.id, data.data.username);
     }
     return (
         <div >
+        {data.success && 
             <Box display="flex" alignItems="center" justifyContent="center" overflow='hidden'>
                 <Stack sx={{ my: 3 }} direction="row" spacing={8}>
                     <Avatar
@@ -34,6 +36,8 @@ const UserProfile = ({ data }) => {
                     </Stack>
                 </Stack>
             </Box>
+            }
+            {data.success && 
             <Box
                 sx={{
                     display: 'flex',
@@ -63,6 +67,23 @@ const UserProfile = ({ data }) => {
                     </div>
                 </Stack>
             </Box>
+        }
+        {data.success === false && 
+         <Box
+         sx={{
+           display: 'flex',
+           justifyContent: 'center',
+           alignItems: 'center',
+           minHeight: '100vh',
+           backgroundColor: 'primary',
+         }}
+       >
+         <Typography style={{ color: 'black', display:'flex' , justifyContent:'center' , flexDirection:'column' , alignItems:'center' }}>
+            <InfoOutlinedIcon sx={{color:"red" , fontSize:'7rem'}}/>
+            <Typography variant='h5'>{data.msg}</Typography>
+         </Typography>
+       </Box>
+       }
         </div>
     );
 };
