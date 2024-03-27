@@ -33,7 +33,7 @@ export function useChatData({ id, name }) {
 
 export function useSendChat() {
     const mutation = useMutation({
-        mutationFn: ({ senderId , reciverId , chatId , text }) => fetchJson(`${endpoints.url.URL}${endpoints.chat.sendMessage}`, {
+        mutationFn: ({ senderId , reciverId , chatId , text }) => fetchJson(`${endpoints.url.URL}/${endpoints.chat.sendMessage}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(senderId , reciverId , chatId , text)

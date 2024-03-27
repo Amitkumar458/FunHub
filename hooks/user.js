@@ -7,7 +7,7 @@ const { fetchJson } = require("@/libs/api")
 
 
 export function LoginUser() {
-    const url = `${endpoints.url.URL}${endpoints.user.login}`
+    const url = `${endpoints.url.URL}/${endpoints.user.login}`
     // console.log(url);
     const mutation = useMutation({
         mutationFn: ({ username, password }) => {
@@ -55,7 +55,7 @@ export function UseFind(user) {
     const {data , isLoading} = useQuery({
         queryKey:[user],
         queryFn: async () => {
-            const res = await fetchJson(`${endpoints.url.URL}${endpoints.user.userdetails}?username=${user}`, {
+            const res = await fetchJson(`${endpoints.url.URL}/${endpoints.user.userdetails}?username=${user}`, {
                 headers: { 'Content-Type': 'application/json' }
             }, true)
             const data = await res.json();
