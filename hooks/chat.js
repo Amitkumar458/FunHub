@@ -7,7 +7,7 @@ export function useChatList() {
     const { data, isLoading } = useQuery({
         queryKey: ['chatlist'],
         queryFn: async () => {
-            const res = await fetchJson(`http://localhost:3001/api/chatlist`, {
+            const res = await fetchJson(`${endpoints.url.LocalUrl}/api/chatlist`, {
                 headers: { 'Content-Type': 'application/json' }
             }, true);
             const response = await res.json();
@@ -21,7 +21,7 @@ export function useChatData({ id, name }) {
     const { data, isLoading } = useQuery({
         queryKey: [id, name],
         queryFn: async () => {
-            const res = await fetchJson(`http://localhost:3001/api/messagelist?id=${id}`, {
+            const res = await fetchJson(`${endpoints.url.LocalUrl}/api/messagelist?id=${id}`, {
                 headers: { 'Content-Type': 'application/json' }
             }, true);
             const response = await res.json();
@@ -33,7 +33,7 @@ export function useChatData({ id, name }) {
 
 export function useSendChat() {
     const mutation = useMutation({
-        mutationFn: ({ senderId , reciverId , chatId , text }) => fetchJson(`http://localhost:3000/${endpoints.chat.sendMessage}`, {
+        mutationFn: ({ senderId , reciverId , chatId , text }) => fetchJson(`${endpoints.url.URL}${endpoints.chat.sendMessage}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(senderId , reciverId , chatId , text)

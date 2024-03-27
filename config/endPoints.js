@@ -18,5 +18,9 @@ export const endpoints = {
         getChatList:"api/chat",
         chatsMessage:"api/chat/c", // "api/chat/c/:id"
         sendMessage:"api/chat/message"
+    },
+    url:{
+        URL:process.env.URL,
+        LocalUrl:process.env.CURRENT
     }
 }

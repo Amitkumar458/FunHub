@@ -7,7 +7,7 @@ const { fetchJson } = require("@/libs/api")
 
 
 export function LoginUser() {
-    const url = `http://localhost:3000/${endpoints.user.login}`
+    const url = `${endpoints.url.URL}${endpoints.user.login}`
     // console.log(url);
     const mutation = useMutation({
         mutationFn: ({ username, password }) => {
@@ -40,7 +40,7 @@ export function useUser() {
     const { data, isLoading } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
-            const res = await fetchJson(`http://localhost:3001/api/user`, {
+            const res = await fetchJson(`${endpoints.url.LocalUrl}/api/user`, {
                 'Content-type': 'application/json'
             }, true)
             const data = await res.json();
@@ -55,7 +55,7 @@ export function UseFind(user) {
     const {data , isLoading} = useQuery({
         queryKey:[user],
         queryFn: async () => {
-            const res = await fetchJson(`http://localhost:3000/${endpoints.user.userdetails}?username=${user}`, {
+            const res = await fetchJson(`${endpoints.url.URL}${endpoints.user.userdetails}?username=${user}`, {
                 headers: { 'Content-Type': 'application/json' }
             }, true)
             const data = await res.json();
@@ -69,7 +69,7 @@ export function UseFind(user) {
 export function useFollow(){
     const client = useQueryClient();
     const mutation = useMutation({
-        mutationFn:async ({ followingId }) => fetchJson(`/api/follow`, {
+        mutationFn:async ({ followingId }) => fetchJson(`${endpoints.url.LocalUrl}/api/follow`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ followingId })
@@ -100,7 +100,7 @@ export function useSearch(search) {
     const {data , isLoading} = useQuery({
         queryKey:[search],
         queryFn :async () => {
-            const res = await fetchJson(`http://localhost:3001/api/search?search=${search}` , {
+            const res = await fetchJson(`${endpoints.url.LocalUrl}/api/search?search=${search}` , {
                 headers: { 'Content-Type': 'application/json' }
             } , true);
             const response = await res.json();
