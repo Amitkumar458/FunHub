@@ -8,7 +8,7 @@ import { AccountBox, ChatSharp, Home, Search, VideoCall } from '@mui/icons-mater
 import { useRouter } from 'next/navigation'
 
 
-export default function FixedBottomNavigation({user}) {
+export default function FixedBottomNavigation({user , inputbox}) {
   const [value, setValue] = React.useState(0);
   const arr = ["" , "search" , "videocall" , "chats" , `user/${user?.username}`];
   const ref = React.useRef(null);
@@ -17,7 +17,7 @@ export default function FixedBottomNavigation({user}) {
   return (
     <Box sx={{ pb: 7 }} ref={ref}>
       <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
-        <BottomNavigation
+        {!inputbox && <BottomNavigation
           showLabels
           value={value}
           onChange={(event, newValue) => {
@@ -31,7 +31,7 @@ export default function FixedBottomNavigation({user}) {
           <BottomNavigationAction label="Chats" icon={<ChatSharp />} />
           <BottomNavigationAction label="Account" icon={<AccountBox />} />
 
-        </BottomNavigation>
+        </BottomNavigation>}
       </Paper>
     </Box>
   );

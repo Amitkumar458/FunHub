@@ -3,6 +3,7 @@ import React from 'react';
 import { Alert, Avatar, Box, Stack, Typography } from '@mui/material';
 import { useFollow, useUser } from '@/hooks/user';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import Link from 'next/link';
 
 const UserProfile = ({ data }) => {
     const { user, isUserLoading } = useUser();
@@ -31,7 +32,7 @@ const UserProfile = ({ data }) => {
                                 <button type="button" className="btn btn-primary" disabled={enable} onClick={() => { followhandler() }}>{isFollowLoading || isUserLoading ? <div className="spinner-grow" role="status">
                                 </div> : "Follow"}</button>
                             }
-                            <button type="button" className="btn btn-primary">Message</button>
+                            <Link href={`/c/${data.data.id}?name=${user.data.name}`}><button disabled={data.data.id === user.data.id} type="button" className="btn btn-primary">Message</button></Link>
                         </Stack>
                     </Stack>
                 </Stack>

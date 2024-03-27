@@ -2,7 +2,6 @@
 import Layout from "@/hocs/Layout";
 import { useState } from "react";
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { Avatar, Divider, List, ListItemAvatar, Typography } from "@mui/material";
@@ -45,7 +44,7 @@ export default function Search() {
     return (
         <Layout search={true} handleSearchData={handleSearchData}>
             <div>{data ? <div>
-                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
                     {data.success && data?.data.map((value , i) => {
                         return (
                             <RenderRow key={i} value={value}/>

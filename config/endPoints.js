@@ -12,6 +12,11 @@ export const endpoints = {
     blog:{
         postBlog:"api/",
         suggestBlog:"api/post/suggest",
-        postBlog:"/api/post/postBlog"
+        postBlog:"api/post/postBlog"
+    },
+    chat:{
+        getChatList:"api/chat",
+        chatsMessage:"api/chat/c", // "api/chat/c/:id"
+        sendMessage:"api/chat/message"
     }
 }

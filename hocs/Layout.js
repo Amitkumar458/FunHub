@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 import { useEffect } from "react";
 
 
-export default function Layout({title ,search, children , handleSearchData , auth}){
+export default function Layout({title , inputbox , username ,search, children , handleSearchData , chat , auth}){
     const {user , isUserLoading} = useUser();
     useEffect(() => {
         if(!isUserLoading && !user.success){
@@ -18,12 +18,12 @@ export default function Layout({title ,search, children , handleSearchData , aut
     return (
         <> 
             <header>
-                <FixedBottomNavigation user={user?.data}/>
+                <FixedBottomNavigation inputbox={inputbox} user={user?.data}/>
             </header>
             <main>
                 {children}
             </main>
-            <App search={search} user={user?.data} handleSearchData={handleSearchData}/>
+            <App search={search} username={username} chat={chat} user={user?.data} handleSearchData={handleSearchData}/>
         </>
     )
 }

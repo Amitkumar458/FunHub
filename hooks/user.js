@@ -1,6 +1,6 @@
 'use client'
-import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useCookies } from "react-cookie";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+// import { useCookies } from "react-cookie";
 const { endpoints } = require("@/config/endPoints")
 const { fetchJson } = require("@/libs/api")
 
@@ -36,7 +36,7 @@ export function LoginUser() {
 }
 
 export function useUser() {
-    const [cookies, setCookie] = useCookies(["token"]);
+    // const [cookies, setCookie] = useCookies(["token"]);
     const { data, isLoading } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
