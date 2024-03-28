@@ -7,7 +7,7 @@ export default function user({ params }) {
     const { data, isLoading } = UseFind(params.slug);
     return (
         <>
-            <Layout>
+            <Layout col={4}>
                 {isLoading ? <div className="centerdiv">Loading...</div> :
                     <UserProfile data={data}/>
                 }

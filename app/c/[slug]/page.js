@@ -49,7 +49,7 @@ export default function Chats({ params }) {
     }
 
     return (
-        <Layout username={name} inputbox={true}>
+        <Layout col={3} username={name} inputbox={true}>
             <div></div>
             {!isLoading && !isUserLoading && message?.map((value, i) => {
                 return (

@@ -3,7 +3,7 @@ import Layout from "@/hocs/Layout";
 
 export default function Chats() {
     return (
-        <Layout chat={true}>
+        <Layout col={3} chat={true}>
             <AllChatPage/>
         </Layout>
     )
