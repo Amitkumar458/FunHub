@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { endpoints } from "@/config/endPoints";
 import { fetchJson } from "@/libs/api";
+import { redirect } from "next/dist/server/api-utils";
 
 export async function GET(request, res) {
   const accessToken = cookies().get("token")?.value;

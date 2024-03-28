@@ -35,6 +35,36 @@ export function LoginUser() {
     }
 }
 
+export function SignUser() {
+    const url = `${endpoints.url.URL}/${endpoints.user.signup}`
+    // console.log(url);
+    const mutation = useMutation({
+        mutationFn: ({ username, password , email , name }) => {
+            return fetchJson(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password , email , name })
+            }, true);
+        }
+    })
+    return {
+        handleSignIn: async (username, password , email , name) => {
+            try {
+                const res = await mutation.mutateAsync({ username, password , email , name});
+                const data = await res.json();
+                return data;
+            } catch (err) {
+                return {
+                    success: false,
+                    error: 'something wents wrong.'
+                }
+            }
+        },
+        isSigninLoading: mutation.isPending,
+    }
+}
+
+
 export function useUser() {
     // const [cookies, setCookie] = useCookies(["token"]);
     const { data, isLoading } = useQuery({

@@ -7,7 +7,7 @@ export const endpoints = {
         userdetails:"api/user/all", // api/user/all?username=username;
         searchUser:"api/user", // api/user/:name
         follow:"api/user/addfollowing", // post request provid followingId
-        unfollow:""
+        unfollow:"api/unfollow"
     },
     blog:{
         postBlog:"api/",

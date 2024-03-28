@@ -24,7 +24,11 @@ export default function Chats({ params }) {
     useEffect(() => {
         const channel = Pusher.subscribe(`${user?.data.id}-${id}`);
         channel.bind('message', function (messageRecive) {
-          setMessage([...message , { reciverId: user?.data.id, senderId: id, text: messageRecive.message, chatId: data.id }]);
+            if(!message){
+                setMessage([{reciverId: user?.data.id, senderId: id, text: messageRecive.message, chatId: data.id }]);
+            }else{
+                setMessage([...message , { reciverId: user?.data.id, senderId: id, text: messageRecive.message, chatId: data.id }]);
+            }
         });
         return () => {
             Pusher.unsubscribe(`${user?.data.id}-${id}`);

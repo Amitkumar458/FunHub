@@ -1,9 +1,10 @@
 "use client"
 import React from 'react';
-import { Alert, Avatar, Box, Stack, Typography } from '@mui/material';
+import { Avatar, Box, Stack, Typography } from '@mui/material';
 import { useFollow, useUser } from '@/hooks/user';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 const UserProfile = ({ data }) => {
     const { user, isUserLoading } = useUser();
@@ -13,6 +14,7 @@ const UserProfile = ({ data }) => {
     const followhandler = async () => {
         const res = await handleFollow(data.data.id, data.data.username);
     }
+
     return (
         <div >
             {data.success &&
@@ -32,7 +34,7 @@ const UserProfile = ({ data }) => {
                                         <button type="button" className="btn btn-primary" disabled={enable} onClick={() => { followhandler() }}>{isFollowLoading || isUserLoading ? <div className="spinner-grow" role="status">
                                         </div> : "Follow"}</button>
                                 }
-                                {data.data.id === user.data.id ? <button type="button" className="btn btn-primary">Log out</button> : <Link href={`/c/${data.data.id}?name=${user.data.name}`}><button type="button" className="btn btn-primary">Message</button></Link>}
+                                {!isUserLoading && data?.data.id === user.data.id ? <Link href='/login'> <button type="button" className="btn btn-primary">Log out</button></Link> : <Link href={`/c/${data.data.id}?name=${user.data.name}`}><button type="button" className="btn btn-primary">Message</button></Link>}
                             </Stack>
                         </Stack>
                     </Stack>
