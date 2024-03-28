@@ -8,7 +8,7 @@ export default function user({ params }) {
     return (
         <>
             <Layout>
-                {isLoading ? <div>Loading</div> :
+                {isLoading ? <div className="centerdiv">Loading...</div> :
                     <UserProfile data={data}/>
                 }
             </Layout>

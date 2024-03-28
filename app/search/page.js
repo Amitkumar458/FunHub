@@ -51,7 +51,7 @@ export default function Search() {
                         )
                     })}
                 </List>
-            </div> : "loading"}</div>
+            </div> : <div className="centerdiv">Loading...</div>}</div>
         </Layout>
     )
 }

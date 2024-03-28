@@ -18,12 +18,12 @@ export default function Layout({title , inputbox , username ,search, children , 
     return (
         <> 
             <header>
-                <FixedBottomNavigation inputbox={inputbox} user={user?.data}/>
+                <App search={search} username={username} chat={chat} user={user?.data} handleSearchData={handleSearchData}/>
             </header>
             <main>
                 {children}
             </main>
-            <App search={search} username={username} chat={chat} user={user?.data} handleSearchData={handleSearchData}/>
+            <FixedBottomNavigation inputbox={inputbox} user={user?.data}/>
         </>
     )
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import Send from '@mui/icons-material/Send';
-import { InputAdornment, Paper } from '@mui/material';
+import { Box, InputAdornment, Paper } from '@mui/material';
 import TextField from '@mui/material/TextField';
 
 const SendMessage = ({messageSending}) => {
@@ -19,10 +19,10 @@ const SendMessage = ({messageSending}) => {
     };
 
     return (
-        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+        <Paper sx={{ position: 'fixed', bottom: 1, left: 0, right: 0 , height:44 }} elevation={3}>
             <TextField
                 placeholder="Message here ... "
-                style={{ borderRadius: 1500 , width:'100%'}}
+                style={{ width:'100%'}}
                 value={message}
                 onChange={(event) => {
                     setMessage(event.target.value);
@@ -35,7 +35,7 @@ const SendMessage = ({messageSending}) => {
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end" className="messageBox">
-                            <Send sx={{color:'blueviolet'}} onClick={summitMessage} />
+                            <Send sx={{color:'blueviolet' , fontSize:'30px'}} onClick={summitMessage} />
                         </InputAdornment>
                     ),
                 }}

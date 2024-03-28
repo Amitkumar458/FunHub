@@ -23,12 +23,14 @@ export default function Chats({ params }) {
 
     useEffect(() => {
         const channel = Pusher.subscribe(`${user?.data.id}-${id}`);
+        window.scrollTo(0, document.body.scrollHeight);
         channel.bind('message', function (messageRecive) {
             if(!message){
                 setMessage([{reciverId: user?.data.id, senderId: id, text: messageRecive.message, chatId: data.id }]);
             }else{
                 setMessage([...message , { reciverId: user?.data.id, senderId: id, text: messageRecive.message, chatId: data.id }]);
             }
+            window.scrollTo(0, document.body.scrollHeight);
         });
         return () => {
             Pusher.unsubscribe(`${user?.data.id}-${id}`);
@@ -39,6 +41,7 @@ export default function Chats({ params }) {
 
     const messageSending = async (text) => {
         setMessage([...message , { reciverId: id, senderId: user.data.id, text, chatId: data.id }]);
+        window.scrollTo(0, document.body.scrollHeight);
         const response = await sendMessage({ senderId: user.data.id, reciverId: id, text, chatId: data.id });
         if (!response.success) {
             toast.error("message not sent , something went wrong");
@@ -51,8 +54,8 @@ export default function Chats({ params }) {
             {!isLoading && !isUserLoading && message?.map((value, i) => {
                 return (
                     <div key={i} className={user.data.id === value.senderId ? "messagetextBox2" : "messagetextBox"}><span className="messagetextborder">{value.text}</span></div>
-                )
-            })}
+                    )
+                })}
             {isLoading && <Loder />}
             <SendMessage messageSending={messageSending} />
         </Layout>
