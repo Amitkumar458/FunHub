@@ -4,6 +4,7 @@ import React from "react";
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import Link from "next/link";
 import SearchForm from "../froms/SearchForm";
+import PostButton from "../HandlePost/PostButton";
 
 function App({ user, chat, search, username, handleSearchData }) {
   username = username?.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
@@ -16,7 +17,7 @@ function App({ user, chat, search, username, handleSearchData }) {
         </> :
           chat ? <Toolbar sx={{ width: '100%', justifyContent: 'center', fontSize: '30px' }}>Chats</Toolbar> : username ? <Toolbar sx={{ width: '100%', justifyContent: 'center', fontSize: '23px' }}>{username}</Toolbar> : <>
             <Toolbar>FunHub</Toolbar>
-            {user ? <Toolbar><AddBoxOutlinedIcon /></Toolbar> : <Toolbar sx={{ color: "darkblue", fontWeight: 500 }}><Link href='/login' style={{ textDecoration: 'none' }}>Log in</Link></Toolbar>}
+            {user ? <Toolbar><PostButton/></Toolbar> : <Toolbar sx={{ color: "darkblue", fontWeight: 500 }}><Link href='/login' style={{ textDecoration: 'none' }}>Log in</Link></Toolbar>}
           </>
         }
       </AppBar>

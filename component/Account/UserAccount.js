@@ -34,7 +34,7 @@ const UserProfile = ({ data }) => {
                                         <button type="button" className="btn btn-primary" disabled={enable} onClick={() => { followhandler() }}>{isFollowLoading || isUserLoading ? <div className="spinner-grow" role="status">
                                         </div> : "Follow"}</button>
                                 }
-                                {!isUserLoading && data?.data.id === user.data.id ? <Link href='/login'> <button type="button" className="btn btn-primary">Log out</button></Link> : <Link href={`/c/${data?.data.id}?name=${user.data.name}`}><button type="button" className="btn btn-primary">Message</button></Link>}
+                                {!isUserLoading && data?.data.id === user.data.id ? <Link href='/login'> <button type="button" className="btn btn-primary">Log out</button></Link> : <Link href={`/c/${data?.data.id}?name=${user?.data.name}`}><button type="button" className="btn btn-primary">Message</button></Link>}
                             </Stack>
                         </Stack>
                     </Stack>
