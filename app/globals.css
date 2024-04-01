@@ -30,7 +30,8 @@
 .messagetextBox2{
   width: 100%;
   min-height: 35px;
-  float: right;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -45,7 +46,15 @@
 .messagetextborder{
   float: right;
   max-height: 70%;
-  background-color: rgb(248, 244, 249);
+  background-color: rgb(247, 226, 226);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.messagetextborder2{
+  float: right;
+  max-height: 70%;
+  background-color: rgb(243, 226, 247);
   padding: 10px;
   border-radius: 10px;
 }

@@ -5,6 +5,7 @@ import Layout from "@/hocs/Layout";
 import { useChatData, useSendChat } from "@/hooks/chat";
 import { useUser } from "@/hooks/user";
 import Pusher from "@/utils/Pusher";
+// import { useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -16,6 +17,8 @@ export default function Chats({ params }) {
     const name = searchParams.get('name')
     const { data, isLoading } = useChatData({ id, name });
     const [message, setMessage] = useState([]);
+    // const queryClient = useQueryClient();
+
     useEffect(() => {
         setMessage(data?.message);
     }, [data, isLoading]);
@@ -37,10 +40,26 @@ export default function Chats({ params }) {
         }
     }, [id, data, message, user]);
 
+    // useEffect(() => {
+    //     const channel = Pusher.subscribe(`${user?.id}`);
+    //     channel.bind('reset' , (messageRecived) => {
+    //         if(messageRecived.reset){
+    //             queryClient.invalidateQueries('chatlist');
+    //         }
+    //     });
+    //     return () => {
+    //         Pusher.unsubscribe(`${user?.id}`);
+    //     }
+    // } , [queryClient , user?.id]);
+
     const { sendMessage, isSendMessageLoading } = useSendChat();
 
     const messageSending = async (text) => {
-        setMessage([...message , { reciverId: id, senderId: user.data.id, text, chatId: data.id }]);
+        if(!message){
+            setMessage([{reciverId: id, senderId: user.data.id, text, chatId: data.id }]);
+        }else{
+            setMessage([...message , { reciverId: id, senderId: user.data.id, text, chatId: data.id }]);
+        }
         window.scrollTo(0, document.body.scrollHeight);
         const response = await sendMessage({ senderId: user.data.id, reciverId: id, text, chatId: data.id });
         if (!response.success) {
@@ -53,7 +72,7 @@ export default function Chats({ params }) {
             <div></div>
             {!isLoading && !isUserLoading && message?.map((value, i) => {
                 return (
-                    <div key={i} className={user.data.id === value.senderId ? "messagetextBox2" : "messagetextBox"}><span className="messagetextborder">{value.text}</span></div>
+                    <div key={i} className={user.data.id === value.senderId ? "messagetextBox2" : "messagetextBox"}><span className={user.data.id === value.senderId ? "messagetextborder" : "messagetextborder2"}>{value.text}</span></div>
                     )
                 })}
             {isLoading && <Loder />}

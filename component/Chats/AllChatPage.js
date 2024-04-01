@@ -2,8 +2,11 @@
 import { useChatList } from "@/hooks/chat";
 import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import Loder from "../HomePage/Loder";
+// import { useUser } from "@/hooks/user";
+// import { useQueryClient } from "@tanstack/react-query";
+// import Pusher from "@/utils/Pusher";
 
 
 function RenderRow({ value }) {
@@ -38,6 +41,20 @@ function RenderRow({ value }) {
 
 export default function AllChatPage() {
     const { data, isLoading } = useChatList();
+    // const {user , isUserLoading} = useUser();
+    // const queryClient = useQueryClient();
+    // useEffect(() => {
+    //     const channel = Pusher.subscribe(`${user?.id}`);
+    //     channel.bind('message' ,function (messageRecived) {
+    //         console.log(messageRecived);
+    //         if(messageRecived.message){
+    //             queryClient.invalidateQueries('chatlist');
+    //         }
+    //     });
+    //     return () => {
+    //         Pusher.unsubscribe(`${user?.id}`);
+    //     }
+    // } , [queryClient, user?.id , isUserLoading]);
     return (
         <>
             <List sx={{ width: '100%' , bgcolor: 'background.paper' }}>
