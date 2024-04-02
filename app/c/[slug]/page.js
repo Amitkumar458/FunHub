@@ -70,7 +70,7 @@ export default function Chats({ params }) {
     return (
         <Layout col={3} username={name} inputbox={true}>
             <div></div>
-            {!isLoading && !isUserLoading && message?.map((value, i) => {
+            {!isLoading && data && !isUserLoading && message?.map((value, i) => {
                 return (
                     <div key={i} className={user.data.id === value.senderId ? "messagetextBox2" : "messagetextBox"}><span className={user.data.id === value.senderId ? "messagetextborder" : "messagetextborder2"}>{value.text}</span></div>
                     )

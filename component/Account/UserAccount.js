@@ -4,7 +4,6 @@ import { Avatar, Box, Stack, Typography } from '@mui/material';
 import { useFollow, useUser } from '@/hooks/user';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 
 const UserProfile = ({ data }) => {
     const { user, isUserLoading } = useUser();
@@ -19,7 +18,7 @@ const UserProfile = ({ data }) => {
         <div >
             {data.success &&
                 <Box display="flex" alignItems="center" justifyContent="center" overflow='hidden'>
-                    <Stack sx={{ my: 3 }} direction="row" spacing={8}>
+                    <Stack sx={{ my: 2 }} direction="row" spacing={5}>
                         <Avatar
                             alt="Remy Sharp"
                             sx={{ fontSize: '50px', width: 100, height: 100, bgcolor: 'orangered' }}
@@ -58,15 +57,15 @@ const UserProfile = ({ data }) => {
                     <Stack direction='row' flexWrap="wrap" spacing={7} sx={{ m: 1 }}>
                         <div className='text-center w-33'>
                             <h3>{data.data.posts.length}</h3>
-                            <h5>Posts</h5>
+                            <h6>posts</h6>
                         </div>
                         <div className='text-center'>
                             <h3>{data.data.followers.length}</h3>
-                            <h5>Followers</h5>
+                            <h6>followers</h6>
                         </div>
                         <div className='text-center'>
                             <h3>{data.data.following.length}</h3>
-                            <h5>Follwing</h5>
+                            <h6>follwing</h6>
                         </div>
                     </Stack>
                 </Box>
