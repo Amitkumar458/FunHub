@@ -6,7 +6,7 @@ import Link from "next/link";
 import SearchForm from "../froms/SearchForm";
 import PostButton from "../HandlePost/PostButton";
 
-function App({ user, chat, search, username, handleSearchData }) {
+function App({ user, chat, create , search, username, handleSearchData }) {
   username = username?.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   return (
     <React.Fragment>
@@ -15,7 +15,9 @@ function App({ user, chat, search, username, handleSearchData }) {
         {search ? <>
           <SearchForm handleSearchData={handleSearchData} />
         </> :
-          chat ? <Toolbar sx={{ width: '100%', justifyContent: 'center', fontSize: '30px' }}>Chats</Toolbar> : username ? <Toolbar sx={{ width: '100%', justifyContent: 'center', fontSize: '23px' }}>{username}</Toolbar> : <>
+          chat ? <Toolbar sx={{ width: '100%', justifyContent: 'center', fontSize: '25px' }}>Chats</Toolbar> : username ? <Toolbar sx={{ width: '100%', justifyContent: 'center', fontSize: '23px' }}>{username}</Toolbar> : 
+          create ? <Toolbar sx={{ width: '100%', justifyContent: 'center', fontSize: '25px' }}>{create}</Toolbar> :
+          <>
             <Toolbar>FunHub</Toolbar>
             {user ? <Toolbar><PostButton/></Toolbar> : <Toolbar sx={{ color: "darkblue", fontWeight: 500 }}><Link href='/login' style={{ textDecoration: 'none' }}>Log in</Link></Toolbar>}
           </>

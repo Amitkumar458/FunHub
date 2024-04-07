@@ -99,3 +99,23 @@ export const RadioField = ({ options, label, ...props }) => {
     </>
   );
 };
+
+export const TextArea = ({type , label, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <div className="mb-3">
+      <textarea 
+        rows={3}
+        type={type}
+        className={`form-control shadow-none ${
+          meta.touched && meta.error && "is-invalid"
+        }`}
+        autoComplete="off"
+        {...field}
+        {...props}
+      />
+      <ErrorMessage name={field.name} component="div" className="text-danger" />
+    </div>
+  );
+}
+

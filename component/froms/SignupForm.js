@@ -42,7 +42,7 @@ const SignUpForm = () => {
         <div>
             <TextField label="Email" type="email" name="email" placeholder="Enter Email"/>
             <TextField label="username" type="text" name="username" placeholder="Choose Username"/>
-            <TextField label="name" type="text" name="name" placeholder="Choose Name"/>
+            <TextField label="name" type="text" name="name" placeholder="Enter Name"/>
             <TextField label="password" name="password" type="password" placeholder="Enter Password"/>
             <TextField label="password" name="confirmPassword" type="password" placeholder="Enter Confirm Password"/>
             <Button type='submit' variant="contained" className='w-100'>{isSigninLoading ? "Loading..." : "Sign in"}</Button>
