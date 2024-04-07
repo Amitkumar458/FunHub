@@ -16,6 +16,7 @@ function Media({value , loading}) {
   return (
     <Card sx={{}}>
       <CardHeader
+       sx={{paddingBottom:'0'}}
         avatar={
           loading ? (
             <Skeleton animation="wave" variant="circular" width={40} height={40} />
@@ -60,7 +61,7 @@ function Media({value , loading}) {
             <Skeleton animation="wave" height={10} width="80%" />
           </React.Fragment>
         ) : (
-          <Typography variant="body2" fontSize={25} color="text.secondary" component="p">
+          <Typography variant="body2" fontSize={20} color="text.secondary" component="p">
             {
               value.title
             }
@@ -90,7 +91,7 @@ export default function UserPost() {
   const {data , isLoading} = useGetPost();
   return (
     <div>
-        {data && data.data.map((value , i) => {
+        {data && data.success && data.data.map((value , i) => {
             return (<Media key={i} value={value} loading={isLoading} />)
         })}
         {isLoading && <Media loading={true}/>}
