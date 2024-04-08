@@ -11,6 +11,9 @@ import IconButton from '@mui/material/IconButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Skeleton from '@mui/material/Skeleton';
 import { useGetPost } from '@/hooks/post';
+import Link from 'next/link'
+import ReactTimeAgo from 'react-time-ago'
+
 
 function Media({value , loading}) {
   return (
@@ -22,7 +25,7 @@ function Media({value , loading}) {
             <Skeleton animation="wave" variant="circular" width={40} height={40} />
           ) : (
             <Avatar alt="Ted talk">
-                {value.author.name.charAt(0).toUpperCase()}
+                <Link style={{textDecoration:'none', color:'darkblue'}} href={`/user/${value.author.username}`} >{value.author.name.charAt(0).toUpperCase()}</Link>
             </Avatar>
           )
         }
@@ -42,14 +45,14 @@ function Media({value , loading}) {
               style={{ marginBottom: 6 }}
             />
           ) : (
-            value.author.username
+            <Link style={{textDecoration:'none', color:'black'}} href={`/user/${value.author.username}`} >{value.author.username}</Link>
           )
         }
         subheader={
           loading ? (
             <Skeleton animation="wave" height={10} width="40%" />
           ) : (
-            '5 hours ago'
+            <ReactTimeAgo date={value.createdAt} locale="en-US"/>
           )
         }
       />
@@ -74,7 +77,7 @@ function Media({value , loading}) {
       ) : (
         <CardMedia
           component="img"
-          height="320"
+          height="360"
           image={value.Image}
           alt="Nicola Sturgeon on a TED talk stage"
         />
