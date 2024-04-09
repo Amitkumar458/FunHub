@@ -79,7 +79,7 @@ export function useGetPost() {
 
 export function useGetUserPost(id) {
     const { data, isLoading } = useQuery({
-        queryKey: [POST_USER],
+        queryKey: [POST_USER , id],
         queryFn: async () => {
             const res = await fetchJson(`${endpoints.url.LocalUrl}/api/userpost?id=${id}`, {
                 headers: { 'Content-Type': 'application/json' }
