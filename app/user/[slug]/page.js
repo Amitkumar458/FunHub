@@ -11,7 +11,7 @@ export default function user({ params }) {
                 {isLoading ? <div className="centerdiv">Loading...</div> :
                     <UserProfile data={data}/>
                 }
-                <AccountPosts/>
+                {!isLoading && data.success && <AccountPosts id={data.data.id}/>}
             </Layout>
         </>
     )

@@ -12,8 +12,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Skeleton from '@mui/material/Skeleton';
 import { useGetPost } from '@/hooks/post';
 import Link from 'next/link'
-import ReactTimeAgo from 'react-time-ago'
-
+import ReactTimeago from 'react-timeago';
 
 function Media({value , loading}) {
   return (
@@ -25,7 +24,7 @@ function Media({value , loading}) {
             <Skeleton animation="wave" variant="circular" width={40} height={40} />
           ) : (
             <Avatar alt="Ted talk">
-                <Link style={{textDecoration:'none', color:'darkblue'}} href={`/user/${value.author.username}`} >{value.author.name.charAt(0).toUpperCase()}</Link>
+                <Link style={{textDecoration:'none', color:'white'}} href={`/user/${value.author.username}`} >{value.author.name.charAt(0).toUpperCase()}</Link>
             </Avatar>
           )
         }
@@ -52,7 +51,7 @@ function Media({value , loading}) {
           loading ? (
             <Skeleton animation="wave" height={10} width="40%" />
           ) : (
-            <ReactTimeAgo date={value.createdAt} locale="en-US"/>
+            <ReactTimeago date={value.createdAt} />
           )
         }
       />
@@ -64,7 +63,7 @@ function Media({value , loading}) {
             <Skeleton animation="wave" height={10} width="80%" />
           </React.Fragment>
         ) : (
-          <Typography variant="body2" fontSize={20} color="text.secondary" component="p">
+          <Typography variant="body2" fontSize={20} component="p">
             {
               value.title
             }

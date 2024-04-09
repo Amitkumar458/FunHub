@@ -6,7 +6,7 @@ const nextConfig = {
         CLOUD_NAME:process.env.CLOUD_NAME
     },
     images: {
-        domains: ["res.cloudinary.com"],
+        domains: ["res.cloudinary.com" , 'images.unsplash.com'],
     },
 };
 

@@ -11,7 +11,8 @@ export const endpoints = {
     },
     blog:{
         suggestBlog:"api/post/suggest",
-        postBlog:"api/post/postBlog"
+        postBlog:"api/post/postBlog",
+        userPost:'api/post/'
     },
     chat:{
         getChatList:"api/chat",

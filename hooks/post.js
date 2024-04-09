@@ -5,6 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const cloudName = process.env.CLOUD_NAME;
 const POST_LIST = "posts"
+const POST_USER = 'userPost'
 
 export function AddPhoto() {
     const url = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`
@@ -67,6 +68,20 @@ export function useGetPost() {
         queryKey: [POST_LIST],
         queryFn: async () => {
             const res = await fetchJson(`${endpoints.url.LocalUrl}/api/suggestpost`, {
+                headers: { 'Content-Type': 'application/json' }
+            }, true);
+            const response = await res.json();
+            return response;
+        }
+    })
+    return { data, isLoading };
+}
+
+export function useGetUserPost(id) {
+    const { data, isLoading } = useQuery({
+        queryKey: [POST_USER],
+        queryFn: async () => {
+            const res = await fetchJson(`${endpoints.url.LocalUrl}/api/userpost?id=${id}`, {
                 headers: { 'Content-Type': 'application/json' }
             }, true);
             const response = await res.json();

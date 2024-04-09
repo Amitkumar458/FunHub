@@ -3,7 +3,7 @@ import { useChatList } from "@/hooks/chat";
 import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import Loder from "../HomePage/Loder";
+import ChatLoading from "./ChatLoading";
 // import { useUser } from "@/hooks/user";
 // import { useQueryClient } from "@tanstack/react-query";
 // import Pusher from "@/utils/Pusher";
@@ -41,6 +41,7 @@ function RenderRow({ value }) {
 
 export default function AllChatPage() {
     const { data, isLoading } = useChatList();
+    const arr = [1,2,3,4,5,6,7,8,9];
     // const {user , isUserLoading} = useUser();
     // const queryClient = useQueryClient();
     // useEffect(() => {
@@ -63,7 +64,11 @@ export default function AllChatPage() {
                         <RenderRow key={i} value={value.users[0]} />
                     )
                 })}
-                {isLoading && <Loder/>}
+                <div>
+                {isLoading && arr.map((value) => {
+                    return <ChatLoading key={value}/>
+                })}
+                </div>
             </List>
         </>
     )
