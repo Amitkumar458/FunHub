@@ -1,6 +1,7 @@
 'use client'
 import { Avatar, Divider, List, ListItemAvatar, Typography, ListItem, ListItemText } from "@mui/material";
 import Link from "next/link"
+import React from "react";
 export default function RenderRow({ value }) {
     return (
       <Link style={{ textDecoration: "none" }} href={`/user/${value.username}`}>
