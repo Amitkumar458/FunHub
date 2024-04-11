@@ -7,13 +7,13 @@ import { redirect } from "next/navigation";
 import { useEffect } from "react";
 
 
-export default function Layout({title , create , col , inputbox , username ,search, children , handleSearchData , chat , auth}){
+export default function Layout({title ,loginRequired, create , col , inputbox , username ,search, children , handleSearchData , chat , auth}){
     const {user , isUserLoading} = useUser();
     useEffect(() => {
-        if(!isUserLoading && !user.success){
+        if(!isUserLoading && !user.success && loginRequired){
             redirect('/login');
         }
-    } , [user , isUserLoading]);
+    } , [user , isUserLoading , loginRequired]);
     
     return (
         <> 

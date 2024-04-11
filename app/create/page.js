@@ -22,7 +22,7 @@ export default function Create() {
     const {handlePost , isPostLoading} = usePost();
 
     const handleSubmit = async (value) => {
-        value.imageurl = url.url;
+        value.imageurl = url.secure_url;
         const data = await handlePost(value);
         if(data.success){
             toast.success("image posted successfully");
@@ -37,7 +37,7 @@ export default function Create() {
     }
 
     return (
-        <Layout create={"Create"}>
+        <Layout create={"Create"} loginRequired={true}>
         <Container sx={{ width: '100%', margin: '10px', display: 'flex', flexDirection:"column" ,  justifyContent: 'center', alignItems: 'center' }}>
             {url && <Image src={url.url}
                 quality={100}

@@ -5,7 +5,7 @@ import Layout from "@/hocs/Layout";
 export default function Home() {
   return (
     <>
-      <Layout>
+      <Layout loginRequired={true}>
         <UserPost/>
       </Layout>
     </>

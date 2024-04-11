@@ -12,14 +12,14 @@ import { useCookies } from 'react-cookie';
 
 const LoginForm = () => {
     const {handleLogin , isLoginLoading} = LoginUser();
-    const [cookies, setCookie] = useCookies(['token']);
+    // const [cookies, setCookie] = useCookies(['token']);
     const handleSubmit = async (value) => {
         const data = await handleLogin(value.username , value.password);
         // console.log(data);
         if(data.success){
             toast.success("user login successfully");
             window.location.replace('/');
-            setCookie('token' , data.token);
+            // setCookie('token' , data.token);
         }else{
             toast.error(data.error);
         }

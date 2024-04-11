@@ -90,3 +90,18 @@ export function useGetUserPost(id) {
     })
     return { data, isLoading };
 }
+
+export function useGetPostById(id) {
+    const {data , isLoading} = useQuery({
+        queryKey:[id],
+        queryFn:async () => {
+            const res = await fetchJson(`${endpoints.url.URL}/${endpoints.blog.getPostById}/${id}` , {
+                headers: { 'Content-Type': 'application/json' }
+            }, true);
+            const data = await res.json();
+            return data;
+        }
+    })
+    return {data , isLoading};
+}
+

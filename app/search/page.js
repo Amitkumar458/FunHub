@@ -42,7 +42,7 @@ export default function Search() {
         setdata(searchData);
     }
     return (
-        <Layout col={1} search={true} handleSearchData={handleSearchData}>
+        <Layout col={1} search={true} handleSearchData={handleSearchData} loginRequired={true}>
             <div>{data ? <div>
                 <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
                     {data.success && data?.data.map((value , i) => {

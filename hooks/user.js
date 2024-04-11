@@ -7,7 +7,7 @@ const { fetchJson } = require("@/libs/api")
 
 
 export function LoginUser() {
-    const url = `${endpoints.url.URL}/${endpoints.user.login}`
+    const url = `${endpoints.url.LocalUrl}/api/login`
     // console.log(url);
     const mutation = useMutation({
         mutationFn: ({ username, password }) => {
