@@ -2,40 +2,14 @@
 import Layout from '@/hocs/Layout';
 import { useGetFollower } from '@/hooks/user';
 import React from 'react'
-import { Avatar, Divider, List, ListItemAvatar, Typography , ListItem, ListItemText } from "@mui/material";
-import Link from "next/link"
+import { RenderRow } from '@/component/Common/RenderUser';
+import { List } from '@mui/icons-material';
+import ChatLoading from '@/component/Chats/ChatLoading';
 
-function RenderRow({ value }) {
-  return (
-    <Link style={{ textDecoration: "none" }} href={`/user/${value.username}`}>
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar sx={{ bgcolor: 'orangered' }} alt="Travis Howard">{value.name.charAt(0).toUpperCase()}</Avatar>
-        </ListItemAvatar>
-        <ListItemText
-          primary={value.username}
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                {value.name}
-              </Typography>
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component='div' />
-    </Link>
-  );
-}
-
-const Follower = ({ params }) => {
-  const user = params.slug;
-  const { data, isLoading } = useGetFollower(user);
+const Follower = ({ params :{slug} }) => {
+  console.log(slug);
+  const { data, isLoading } = useGetFollower(slug);
+  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   console.log(data);
   return (
     <Layout loginRequired={true} followers={true}>
@@ -47,7 +21,9 @@ const Follower = ({ params }) => {
             )
           })}
         </List>
-      </div> : <div className="centerdiv">Loading...</div>}</div>
+      </div> : <div>{isLoading && arr.map((value) => {
+        return <ChatLoading key={value} />
+      })}</div>}</div>
     </Layout>
   )
 }

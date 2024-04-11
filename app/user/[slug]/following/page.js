@@ -2,36 +2,7 @@
 import Layout from '@/hocs/Layout';
 import { useGetFollowing } from '@/hooks/user';
 import React from 'react'
-import { Avatar, Divider, List, ListItemAvatar, Typography, ListItem, ListItemText } from "@mui/material";
-import Link from "next/link"
-
-function RenderRow({ value }) {
-  return (
-    <Link style={{ textDecoration: "none" }} href={`/user/${value.username}`}>
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar sx={{ bgcolor: 'orangered' }} alt="Travis Howard">{value.name.charAt(0).toUpperCase()}</Avatar>
-        </ListItemAvatar>
-        <ListItemText
-          primary={value.username}
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                {value.name}
-              </Typography>
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component='div' />
-    </Link>
-  );
-}
+import { RenderRow } from '@/component/Common/RenderUser';
 
 
 const Following = ({ params }) => {
