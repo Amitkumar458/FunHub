@@ -12,9 +12,14 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Skeleton from '@mui/material/Skeleton';
 import Link from 'next/link'
 import ReactTimeago from 'react-timeago';
-
+import CardActions from '@mui/material/CardActions';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShareIcon from '@mui/icons-material/Share';
+import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
+import { endpoints } from '@/config/endPoints';
 
 const Media = ({value , loading}) => {
+  const [toggle , settoggle] = React.useState(false);
   return (
     <Card sx={{}}>
       <CardHeader
@@ -81,6 +86,18 @@ const Media = ({value , loading}) => {
           alt="Nicola Sturgeon on a TED talk stage"
         />
       )}
+
+    <CardActions disableSpacing>
+        <IconButton sx={{width:'33%'}} aria-label="Like" onClick={() => settoggle(!toggle)}>
+        <FavoriteIcon sx={{color:toggle ? "red" : ""}} />
+        </IconButton>
+        <IconButton sx={{width:'33%'}} aria-label="comment">
+        <MapsUgcOutlinedIcon />
+        </IconButton>
+        <IconButton sx={{width:'33%'}} onClick={() => {navigator.share({url:`${endpoints.url.LocalUrl}/p/${value.id}`})}} aria-label="share">
+        <ShareIcon />
+        </IconButton>
+    </CardActions>
     </Card>
   );
 }

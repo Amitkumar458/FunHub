@@ -59,14 +59,18 @@ const UserProfile = ({ data }) => {
                             <h3>{data.data.posts.length}</h3>
                             <h6>posts</h6>
                         </div>
-                        <div className='text-center'>
-                            <h3>{data.data.followers.length}</h3>
-                            <h6>followers</h6>
-                        </div>
-                        <div className='text-center'>
-                            <h3>{data.data.following.length}</h3>
-                            <h6>follwing</h6>
-                        </div>
+                        <Link style={{color:'black' , opacity:'0.7' , textDecoration:'none'}} href={`${data.data.username}/followers`}>
+                            <div className='text-center'>
+                                <h3>{data.data.followers.length}</h3>
+                                <h6>followers</h6>
+                            </div>
+                        </Link>
+                        <Link style={{color:'black' , opacity:'0.7' , textDecoration:'none'}} href={`${data.data.username}/following`}>
+                            <div className='text-center'>
+                                <h3>{data.data.following.length}</h3>
+                                <h6>follwing</h6>
+                            </div>
+                        </Link>
                     </Stack>
                 </Box>
             }

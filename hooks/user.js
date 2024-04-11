@@ -139,3 +139,33 @@ export function useSearch(search) {
     })
     return {data , isLoading};
 }
+
+export function useGetFollower(user) {
+    const {data , isLoading} = useQuery({
+        queryKey:[user , 'follower'],
+        queryFn: async () => {
+            const res = await fetchJson(`${endpoints.url.URL}/${endpoints.user.follower}/${user}`, {
+                headers: { 'Content-Type': 'application/json' }
+            }, true)
+            const data = await res.json();
+            return data;
+        },
+        cacheTime:3000000
+    })
+    return {data , isLoading}
+}
+
+export function useGetFollowing(user) {
+    const {data , isLoading} = useQuery({
+        queryKey:[user , 'following'],
+        queryFn: async () => {
+            const res = await fetchJson(`${endpoints.url.URL}/${endpoints.user.following}/${user}`, {
+                headers: { 'Content-Type': 'application/json' }
+            }, true)
+            const data = await res.json();
+            return data;
+        },
+        cacheTime:3000000
+    })
+    return {data , isLoading}
+}
