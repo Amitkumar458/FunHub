@@ -8,7 +8,7 @@ import RenderRow from '@/component/Common/RenderUser';
 
 const Follower = ({ params :{slug} }) => {
   const { data, isLoading } = useGetFollower(slug);
-  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const arr = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
     <Layout loginRequired={true} followers={true}>
       {!isLoading ?
