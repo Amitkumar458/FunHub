@@ -68,7 +68,7 @@ const UserProfile = ({ data }) => {
                         <Link style={{color:'black' , opacity:'0.7' , textDecoration:'none'}} href={`${data.data.username}/following`}>
                             <div className='text-center'>
                                 <h3>{data.data.following.length}</h3>
-                                <h6>follwing</h6>
+                                <h6>following</h6>
                             </div>
                         </Link>
                     </Stack>

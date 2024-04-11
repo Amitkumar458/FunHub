@@ -8,7 +8,7 @@ export default function user({ params }) {
     return (
         <>
             <Layout col={4} loginRequired={true}>
-                {isLoading ? <div className="centerdiv">Loading...</div> :
+                {isLoading ? <div className="centerdiv">Loading...</div> : 
                     <UserProfile data={data}/>
                 }
                 {!isLoading && data.success && <AccountPosts id={data.data.id}/>}
