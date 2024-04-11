@@ -1,5 +1,6 @@
 import { ImageList, ImageListItem } from "@mui/material";
 import Link from "next/link";
+import Image from 'next/image'
 
 const UserPosts = ({data , isLoading}) => {
   
@@ -12,7 +13,7 @@ const UserPosts = ({data , isLoading}) => {
         {data.success && data.data.map((item , i) => (
           <Link key={i} href={`/p/${item.id}`}>
           <ImageListItem>
-            <img
+            <Image
               src={`${item.Image}?w=164&h=164&fit=crop&auto=format`}
               alt={'image'}
               loading="lazy"
@@ -24,7 +25,7 @@ const UserPosts = ({data , isLoading}) => {
         {data.success && data.data.length === 0 && 
           itemData.map((item) => (
             <ImageListItem key={item.img}>
-              <img
+              <Image
                 srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                 src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
                 alt={item.title}
