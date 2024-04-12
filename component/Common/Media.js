@@ -15,8 +15,8 @@ import ReactTimeago from 'react-timeago';
 import CardActions from '@mui/material/CardActions';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
-import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 import { endpoints } from '@/config/endPoints';
+import SwipeableEdgeDrawer from '../HandlePost/CommentNav';
 
 const Media = ({value , loading}) => {
   const [toggle , settoggle] = React.useState(false);
@@ -92,7 +92,7 @@ const Media = ({value , loading}) => {
         <FavoriteIcon sx={{color:toggle ? "red" : ""}} />
         </IconButton>
         <IconButton sx={{width:'33%'}} aria-label="comment">
-        <MapsUgcOutlinedIcon />
+        <SwipeableEdgeDrawer id={value?.id}/>
         </IconButton>
         <IconButton sx={{width:'33%'}} onClick={() => {navigator.share({url:`${endpoints.url.LocalUrl}/p/${value.id}`})}} aria-label="share">
         <ShareIcon />

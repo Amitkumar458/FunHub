@@ -105,3 +105,21 @@ export function useGetPostById(id) {
     return {data , isLoading};
 }
 
+
+export function useGetComments(id , loading) {
+    const {data , isLoading} = useQuery({
+        queryKey:[id , loading],
+        queryFn:async () => {
+            if(loading){
+                const res = await fetchJson(`${endpoints.url.URL}/${endpoints.blog.getAllComment}/${id}` , {
+                    headers: { 'Content-Type': 'application/json' }
+                }, true);
+                const data = await res.json();
+                return data;
+            }else{
+                return {success:false , msg:"comment section closed"}
+            }
+        }
+    })
+    return {data , isLoading};
+}

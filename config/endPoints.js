@@ -15,7 +15,8 @@ export const endpoints = {
         suggestBlog:"api/post/suggest",
         postBlog:"api/post/postBlog",
         userPost:'api/post/',
-        getPostById:'api/post/p'
+        getPostById:'api/post/p',
+        getAllComment:'api/post/comment', //api/post/comment/:id
     },
     chat:{
         getChatList:"api/chat",
