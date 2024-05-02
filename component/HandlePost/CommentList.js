@@ -21,7 +21,7 @@ function RenderRow({ value }) {
                             >
                                 {value.username}
                                 {"  "}
-                                <ReactTimeago date={value.createdAt} />
+                                <ReactTimeago live={false} date={value.createdAt} />
                         </Typography>
                     </React.Fragment>}
                     secondary={

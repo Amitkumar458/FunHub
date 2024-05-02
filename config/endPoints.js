@@ -17,6 +17,7 @@ export const endpoints = {
         userPost:'api/post/',
         getPostById:'api/post/p',
         getAllComment:'api/post/comment', //api/post/comment/:id
+        addComment:'api/post/comment' //post request token postId and text required;
     },
     chat:{
         getChatList:"api/chat",

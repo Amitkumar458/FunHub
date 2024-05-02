@@ -12,6 +12,7 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 import { useGetComments } from '@/hooks/post';
 import CommentList from './CommentList';
+import Addcomment from '../froms/AddCommentForm';
 
 const drawerBleeding = 56;
 
@@ -80,7 +81,7 @@ function SwipeableEdgeDrawer(props) {
           }}
         >
           <Puller />
-          <Typography sx={{ p: 2, color: 'text.secondary' }}>Comments</Typography>
+          <Typography sx={{ p: 2, color: 'text.secondary' , textAlign:'center' }}>Comments</Typography>
         </StyledBox>
         <StyledBox
           sx={{
@@ -90,7 +91,8 @@ function SwipeableEdgeDrawer(props) {
             overflow: 'auto',
           }}
         >
-          {(!isLoading && data.success) ? <CommentList value={data.data.comment}/> : <Skeleton variant="rectangular" height="100%" />}
+          {(!isLoading && data.success) ? <CommentList value={data.data.comment}/>  : <Skeleton variant="rectangular" height="100%" />}
+          <Addcomment postId={props.id}/>
         </StyledBox>
       </SwipeableDrawer>
     </Root>

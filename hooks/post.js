@@ -123,3 +123,30 @@ export function useGetComments(id , loading) {
     })
     return {data , isLoading};
 }
+
+export function usePostComment(){
+    const client = useQueryClient();
+    const mutation = useMutation({
+        mutationFn: ({text , postId}) => fetchJson(`${endpoints.url.LocalUrl}/api/addcomment`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({text , postId})
+        }, true)
+    })
+    return {
+        handleAddComment: async (text , postId) => {
+            try {
+                const res = await mutation.mutateAsync({text , postId});
+                const data = await res.json();
+                client.invalidateQueries([postId , true]);
+                return data;
+            } catch (err) {
+                return {
+                    success: false,
+                    error: 'something wents wrong.'
+                }
+            }
+        },
+        isAddCommentLoading: mutation.isPending,
+    }
+}
